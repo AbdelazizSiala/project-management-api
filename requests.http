@@ -18,3 +18,19 @@ Content-Type: application/json
     "login": "aziz123",
     "password": "123"
 }
+
+### Test authentication without token
+GET http://localhost:3000/test-auth
+
+### Test authentication with invalid token
+GET http://localhost:3000/test-auth
+Authorization: Bearer tokenGhalet
+
+### Test authentication with valid token
+GET http://localhost:3000/test-auth
+Authorization: Bearer .eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0NjEwMDM4LCJleHAiOjE3OTQ2OTY0Mzh9.2DRewKbnf_FuG2idf9ZGVfiVX2vQMw5pfRbtXJ--nzw
+
+## Test authentication with expired token (generatit token yo93ed 1s bech ntesti bih)
+GET http://localhost:3000/test-auth
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRlc3QiLCJyb2tlIjoidXNlciIsImlhdCI6MTc5NDYxMDEwOCwiZXhwIjoxNzk0NjEwMTA5fQ.LtuqqGM-pw4ShL3TqwCz_HDZ6zbRtgR_EXbZuSMlm2Q
+
