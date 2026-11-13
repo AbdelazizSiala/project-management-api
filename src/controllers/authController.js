@@ -67,6 +67,9 @@ const login = async (req, res) => {
             });
         }
 
+        /*Nasn3o token signed fih id w role mta3 el user bech yesta3mlou ba3d fil protected requests,
+        melekher, kil mefte7 ely y3tik access lel functions el protected, ely lezemhom role mo3ayn mathalan
+        */
         const token = jwt.sign(
             {
                 id: user._id,
