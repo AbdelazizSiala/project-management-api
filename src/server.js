@@ -5,10 +5,13 @@ require('dotenv').config();
 
 const connectDB = require('./config/database');
 
+const authRoutes = require('./routes/authRoutes');
+
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use('/', authRoutes);
 
 app.get('/', (req, res) => {
     res.json({ message: 'Project Management API is running!' });
@@ -25,3 +28,4 @@ const startServer = async () => {
 };
 
 startServer();
+    

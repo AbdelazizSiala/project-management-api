@@ -1,0 +1,10 @@
+### Sta3mlt REST Client directly fil VS Code fi 3odh Bruno wela Postman bech njm ntesti el API mta3i
+
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+    "nom": "Abdelaziz",
+    "login": "aziz123",
+    "password": "123"
+}
