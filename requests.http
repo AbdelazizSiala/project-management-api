@@ -18,3 +18,14 @@ Content-Type: application/json
     "login": "aziz123",
     "password": "123"
 }
+
+### Test manager route without token
+GET http://localhost:3000/test-manager
+
+### Test manager route with normal user token
+GET http://localhost:3000/test-manager
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0Njc0NzU4LCJleHAiOjE3OTQ3NjExNTh9.g6cbSuUh3-R8EFK-QKhoDlYa4EyqXRdvgh8zSTpIR-I
+
+### Test manager route with manager token
+GET http://localhost:3000/test-manager
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRlc3QtbWFuYWdlciIsInJvbGUiOiJtYW5hZ2VyIiwiaWF0IjoxNzk0Njc0Nzg1LCJleHAiOjE3OTQ2NzgzODV9._LG0aAJZWauqMsehTSmYX5aUEgttUykAitGHfgvur9I

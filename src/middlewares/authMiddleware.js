@@ -14,10 +14,9 @@ const authenticate = (req, res, next) => {
             });
         }
 
+        //Nextractiw el token, nthabtou menou w n7ottou el info mta3 el user fi req.user bech nesta3mlouhom mba3d
         const token = authHeader.split(' ')[1];
-
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
         req.user = decoded;
 
         next();
@@ -29,4 +28,24 @@ const authenticate = (req, res, next) => {
     }
 };
 
-module.exports = { authenticate };
+/*Na3mlo verification 3la role mt3 el user li b3th el request bech nthbto ken 3andou permission y3ml el action li 7ab y3mlou wele
+ex: manager ynjm ychof el projects, el user el 3adi le*/
+const authorizeRoles = (...allowedRoles) => {
+    return (req, res, next) => {
+        if (!req.user) {
+            return res.status(401).json({
+                message: 'Authentication required.'
+            });
+        }
+
+        if (!allowedRoles.includes(req.user.role)) {
+            return res.status(403).json({
+                message: 'You do not have permission to perform this action.'
+            });
+        }
+
+        next();
+    };
+};
+
+module.exports = { authenticate, authorizeRoles };

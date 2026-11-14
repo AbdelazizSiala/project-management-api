@@ -8,6 +8,14 @@ require('dotenv').config();
 
 const app = express();
 
+const { authenticate, authorizeRoles } = require('./middlewares/authMiddleware');
+app.get('/test-manager', authenticate, authorizeRoles('manager'), (req, res) => {
+    res.json({
+        message: 'Manager access granted!',
+        user: req.user
+    });
+});
+
 //Hedhom zoz express middleware nest79ohom
 app.use(cors());
 app.use(express.json());
