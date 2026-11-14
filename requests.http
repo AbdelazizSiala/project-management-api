@@ -92,3 +92,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5Y
 ### Delete task
 DELETE http://localhost:3000/tasks/6af8aa9b873f141339c04e61
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0Njc2MjQzLCJleHAiOjE3OTQ3NjI2NDN9.HszBp6OWm6VN2j7-EkK-pax5t9CU6jeznlDngm7tN8c
+
+
+### Assign task to user
+PATCH http://localhost:3000/tasks/6af8d0ed9738c2e24fdb90b4/assign
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjg5ODgwNTFiMDVlZGE4YWY5NmVhMCIsInJvbGUiOiJtYW5hZ2VyIiwiaWF0IjoxNzk0NjkyOTA3LCJleHAiOjE3OTQ3NzkzMDd9.zo3XKvpNyQnm2_1qfCtRdwOXTIlPCchaEUBCdYTPIc8
+
+{
+    "assignedTo": "6af78849aed2dc631e97cccf"
+}
