@@ -4,6 +4,7 @@ const cors = require('cors');
 const connectDB = require('./config/database');
 const authRoutes = require('./routes/authRoutes');
 const projectRoutes = require('./routes/projectRoutes');
+const taskRoutes = require('./routes/taskRoutes');
 
 require('dotenv').config();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 
 app.use('/', authRoutes);
 app.use('/projects', projectRoutes);
+app.use('/tasks', taskRoutes);
 app.get('/', (req, res) => {
     res.json({ message: 'Project Management API is running!' });
 });

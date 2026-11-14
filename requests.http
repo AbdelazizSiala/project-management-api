@@ -57,3 +57,38 @@ Content-Type: application/json
 ### Delete project
 DELETE http://localhost:3000/projects/6af896e91897689d31ad8c0c
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0Njc3MjM1LCJleHAiOjE3OTQ3NjM2MzV9.02hJvdpedIHvCR4Ar_zHT1p3x6XhiyqFN-kIXXTLqHc
+
+
+### Create a task
+POST http://localhost:3000/tasks
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0Njc2MjQzLCJleHAiOjE3OTQ3NjI2NDN9.HszBp6OWm6VN2j7-EkK-pax5t9CU6jeznlDngm7tN8c
+
+{
+    "title": "Test",
+    "description": "Test description",
+    "status": "doing",
+    "deadline": "2026-12-01",
+    "project": "6af8aa1f873f141339c04e60"
+}
+
+### Get all tasks
+GET http://localhost:3000/tasks
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0Njc2MjQzLCJleHAiOjE3OTQ3NjI2NDN9.HszBp6OWm6VN2j7-EkK-pax5t9CU6jeznlDngm7tN8c
+
+
+### Update task
+PATCH http://localhost:3000/tasks/6af8aa9b873f141339c04e61
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0Njc2MjQzLCJleHAiOjE3OTQ3NjI2NDN9.HszBp6OWm6VN2j7-EkK-pax5t9CU6jeznlDngm7tN8c
+
+{
+    "title": "Updated task title",
+    "description": "Updated description",
+    "status": "doing",
+    "deadline": "2026-12-15"
+}
+
+### Delete task
+DELETE http://localhost:3000/tasks/6af8aa9b873f141339c04e61
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0Njc2MjQzLCJleHAiOjE3OTQ3NjI2NDN9.HszBp6OWm6VN2j7-EkK-pax5t9CU6jeznlDngm7tN8c
