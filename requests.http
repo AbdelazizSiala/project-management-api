@@ -5,12 +5,12 @@ POST http://localhost:3000/register
 Content-Type: application/json
 
 {
-    "nom": "Abdelaziz",
-    "login": "aziz123",
+    "nom": "Ahmed",
+    "login": "ahmed12",
     "password": "123"
 }
 
-### Login
+### Login Aziz
 POST http://localhost:3000/login
 Content-Type: application/json
 
@@ -18,3 +18,42 @@ Content-Type: application/json
     "login": "aziz123",
     "password": "123"
 }
+
+### Login Ahmed
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "login": "ahmed12",
+    "password": "123"
+}
+
+
+### Create project
+POST http://localhost:3000/projects
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0Njc2MjQzLCJleHAiOjE3OTQ3NjI2NDN9.HszBp6OWm6VN2j7-EkK-pax5t9CU6jeznlDngm7tN8c
+Content-Type: application/json
+
+{
+    "nom": "My First Project",
+    "description": "Testing project creation through the API"
+}
+
+### Get projects
+GET http://localhost:3000/projects
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRlc3QtbWFuYWdlciIsInJvbGUiOiJtYW5hZ2VyIiwiaWF0IjoxNzk0Njc2Nzk1LCJleHAiOjE3OTQ2ODAzOTV9.NwrTKjyaM0cyqssF80zGJAGfihMp3OSK1yOc4YZKL1A
+
+### Update project
+PATCH http://localhost:3000/projects/6af896e91897689d31ad8c0c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0Njc3MjM1LCJleHAiOjE3OTQ3NjM2MzV9.02hJvdpedIHvCR4Ar_zHT1p3x6XhiyqFN-kIXXTLqHc
+Content-Type: application/json
+
+{
+    "nom": "Test 2",
+    "description": "Test 2 description",
+    "status": "completed"
+}
+
+### Delete project
+DELETE http://localhost:3000/projects/6af896e91897689d31ad8c0c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0Njc3MjM1LCJleHAiOjE3OTQ3NjM2MzV9.02hJvdpedIHvCR4Ar_zHT1p3x6XhiyqFN-kIXXTLqHc
