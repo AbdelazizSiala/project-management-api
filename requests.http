@@ -143,3 +143,43 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjg5ODgwN
 ### Combine task filters
 GET http://localhost:3000/tasks?status=todo&sortBy=deadline&order=asc
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjg5ODgwNTFiMDVlZGE4YWY5NmVhMCIsInJvbGUiOiJtYW5hZ2VyIiwiaWF0IjoxNzk0NzU2Mzg5LCJleHAiOjE3OTQ4NDI3ODl9.5G5kSSUNbUYUeEU-F2vyEEqgHxElp7JpB-g5RS5Jn0E
+
+### Register without a name
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+    "login": "testuser",
+    "password": "123456"
+}
+
+### Create a project without a name
+POST http://localhost:3000/projects
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjg5ODgwNTFiMDVlZGE4YWY5NmVhMCIsInJvbGUiOiJtYW5hZ2VyIiwiaWF0IjoxNzk0NzYzMzA2LCJleHAiOjE3OTQ4NDk3MDZ9.7GDZNl9dVteJAkYUZDZvcGkHOrMlywklz28FMMDQAUU
+Content-Type: application/json
+
+{
+    "description": "Testing validation"
+}
+
+### Create a task with an invalid status
+POST http://localhost:3000/tasks
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjg5ODgwNTFiMDVlZGE4YWY5NmVhMCIsInJvbGUiOiJtYW5hZ2VyIiwiaWF0IjoxNzk0NzYzMzA2LCJleHAiOjE3OTQ4NDk3MDZ9.7GDZNl9dVteJAkYUZDZvcGkHOrMlywklz28FMMDQAUU
+Content-Type: application/json
+
+{
+    "title": "Test task",
+    "description": "Testing invalid status",
+    "status": "todo",
+    "deadline": "2026-12-01",
+    "project": "6af8aa1f873f141339c04e60"
+}
+
+### Update a project using an invalid ID
+PATCH http://localhost:3000/projects/123
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjg5ODgwNTFiMDVlZGE4YWY5NmVhMCIsInJvbGUiOiJtYW5hZ2VyIiwiaWF0IjoxNzk0NzYzMzA2LCJleHAiOjE3OTQ4NDk3MDZ9.7GDZNl9dVteJAkYUZDZvcGkHOrMlywklz28FMMDQAUU
+Content-Type: application/json
+
+{
+    "nom": "Updated project"
+}
