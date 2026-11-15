@@ -2,7 +2,7 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const register = async (req, res) => {
+const register = async (req, res, next) => {
     try {
         const { nom, login, password } = req.body;
 
@@ -37,14 +37,11 @@ const register = async (req, res) => {
         });
 
     } catch (error) {
-        res.status(500).json({
-            message: 'Registration failed.',
-            error: error.message
-        });
+        next(error);
     }
 };
 
-const login = async (req, res) => {
+const login = async (req, res, next) => {
     try {
         const { login, password } = req.body;
 
@@ -93,10 +90,7 @@ const login = async (req, res) => {
         });
 
     } catch (error) {
-        res.status(500).json({
-            message: 'Login failed.',
-            error: error.message
-        });
+        next(error);
     }
 };
 

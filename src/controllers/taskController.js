@@ -1,4 +1,3 @@
-
 const Task = require('../models/Task');
 const Project = require('../models/Project');
 const User = require('../models/User');
@@ -9,7 +8,7 @@ const escapeRegex = (value) => {
     return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 };
 
-const createTask = async (req, res) => {
+const createTask = async (req, res, next) => {
     try {
         const { title, description, status, deadline, project } = req.body;
 
@@ -44,14 +43,11 @@ const createTask = async (req, res) => {
         });
 
     } catch (error) {
-        res.status(500).json({
-            message: 'Task creation failed.',
-            error: error.message
-        });
+        next(error);
     }
 };
 
-const getTasks = async (req, res) => {
+const getTasks = async (req, res, next) => {
     try {
         const {
             search,
@@ -99,9 +95,7 @@ const getTasks = async (req, res) => {
 
         const filters = [];
 
-        if (req.user.role === 'manager') {
-            filters.push({});
-        } else {
+        if (req.user.role !== 'manager') {
             //Nselectiow el projects ely teb3In el user li b3th request o nkhdo ken el IDs (mezel array mt3 objects)
             const userProjects = await Project.find({
                 owner: req.user.id
@@ -183,23 +177,20 @@ const getTasks = async (req, res) => {
             [sortBy]: order === 'asc' ? 1 : -1
         };
 
-        const tasks = await Task.find({
-            $and: filters
-        }).sort(sortOptions);
+        const taskQuery = filters.length > 0 ? { $and: filters } : {};
+
+        const tasks = await Task.find(taskQuery).sort(sortOptions);
 
         res.status(200).json({
             tasks
         });
 
     } catch (error) {
-        res.status(500).json({
-            message: 'Failed to retrieve tasks.',
-            error: error.message
-        });
+        next(error);
     }
 };
 
-const updateTask = async (req, res) => {
+const updateTask = async (req, res, next) => {
     try {
         const { title, description, status, deadline } = req.body;
 
@@ -234,14 +225,11 @@ const updateTask = async (req, res) => {
         });
 
     } catch (error) {
-        res.status(500).json({
-            message: 'Task update failed.',
-            error: error.message
-        });
+        next(error);
     }
 };
 
-const deleteTask = async (req, res) => {
+const deleteTask = async (req, res, next) => {
     try {
         //Nest3Mlo populate bech nreturniew el object keml mt3 el project moch just el ID
         const task = await Task.findById(req.params.id).populate('project');
@@ -268,14 +256,11 @@ const deleteTask = async (req, res) => {
         });
 
     } catch (error) {
-        res.status(500).json({
-            message: 'Task deletion failed.',
-            error: error.message
-        });
+        next(error);
     }
 };
 
-const assignTask = async (req, res) => {
+const assignTask = async (req, res, next) => {
     try {
         const { assignedTo } = req.body;
 
@@ -305,10 +290,7 @@ const assignTask = async (req, res) => {
         });
 
     } catch (error) {
-        res.status(500).json({
-            message: 'Task assignment failed',
-            error: error.message
-        });
+        next(error);
     }
 };
 

@@ -183,3 +183,6 @@ Content-Type: application/json
 {
     "nom": "Updated project"
 }
+
+### Sending a request to a non-existent route
+GET http://localhost:3000/random
