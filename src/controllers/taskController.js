@@ -2,6 +2,12 @@
 const Task = require('../models/Task');
 const Project = require('../models/Project');
 const User = require('../models/User');
+const mongoose = require('mongoose');
+
+//Nconvertiw el special characters mt3 regex lel escaped characters (ex: . twali /.) bech ta3ti el user ely 7ab 3Lih fil request bdhabet
+const escapeRegex = (value) => {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+};
 
 const createTask = async (req, res) => {
     try {
@@ -47,10 +53,54 @@ const createTask = async (req, res) => {
 
 const getTasks = async (req, res) => {
     try {
-        let tasks;
+        const {
+            search,
+            status,
+            project,
+            assignedTo,
+            deadlineFrom,
+            deadlineTo,
+            sortBy = 'createdAt',
+            order = 'desc'
+        } = req.query;
+
+        const allowedStatuses = ['todo', 'doing', 'done'];
+        const allowedSortFields = ['title', 'status', 'deadline', 'createdAt'];
+
+        if (status && !allowedStatuses.includes(status)) {
+            return res.status(400).json({
+                message: 'Invalid task status.'
+            });
+        }
+
+        if (!allowedSortFields.includes(sortBy)) {
+            return res.status(400).json({
+                message: 'Invalid sort field.'
+            });
+        }
+
+        if (!['asc', 'desc'].includes(order)) {
+            return res.status(400).json({
+                message: 'Invalid sort order.'
+            });
+        }
+
+        if (project && !mongoose.isValidObjectId(project)) {
+            return res.status(400).json({
+                message: 'Invalid project ID.'
+            });
+        }
+
+        if (assignedTo && !mongoose.isValidObjectId(assignedTo)) {
+            return res.status(400).json({
+                message: 'Invalid user ID.'
+            });
+        }
+
+        const filters = [];
 
         if (req.user.role === 'manager') {
-            tasks = await Task.find();
+            filters.push({});
         } else {
             //Nselectiow el projects ely teb3In el user li b3th request o nkhdo ken el IDs (mezel array mt3 objects)
             const userProjects = await Project.find({
@@ -61,10 +111,81 @@ const getTasks = async (req, res) => {
             const projectIds = userProjects.map(project => project._id);
 
             //Nlawjo 3l tasks ely el project IDs mt3hom mawjdoin fil array mt3 el IDs mt3 el projects li teb3in el user li b3atht el request
-            tasks = await Task.find({
+            filters.push({
                 project: { $in: projectIds }
             });
         }
+
+        if (project) {
+            filters.push({ project });
+        }
+
+        if (status) {
+            filters.push({ status });
+        }
+
+        if (assignedTo) {
+            filters.push({ assignedTo });
+        }
+
+        if (search) {
+            const searchRegex = new RegExp(escapeRegex(search), 'i');
+
+            filters.push({
+                $or: [
+                    { title: searchRegex },
+                    { description: searchRegex }
+                ]
+            });
+        }
+
+        if (deadlineFrom || deadlineTo) {
+            const deadlineFilter = {};
+
+            if (deadlineFrom) {
+                const fromDate = new Date(deadlineFrom);
+
+                if (Number.isNaN(fromDate.getTime())) {
+                    return res.status(400).json({
+                        message: 'Invalid start deadline date.'
+                    });
+                }
+
+                deadlineFilter.$gte = fromDate;
+            }
+
+            if (deadlineTo) {
+                const toDate = new Date(deadlineTo);
+
+                if (Number.isNaN(toDate.getTime())) {
+                    return res.status(400).json({
+                        message: 'Invalid end deadline date.'
+                    });
+                }
+
+                deadlineFilter.$lte = toDate;
+            }
+
+            if (
+                deadlineFrom &&
+                deadlineTo &&
+                new Date(deadlineFrom) > new Date(deadlineTo)
+            ) {
+                return res.status(400).json({
+                    message: 'Start deadline cannot be after end deadline.'
+                });
+            }
+
+            filters.push({ deadline: deadlineFilter });
+        }
+
+        const sortOptions = {
+            [sortBy]: order === 'asc' ? 1 : -1
+        };
+
+        const tasks = await Task.find({
+            $and: filters
+        }).sort(sortOptions);
 
         res.status(200).json({
             tasks

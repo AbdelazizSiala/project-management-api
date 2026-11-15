@@ -31,12 +31,12 @@ Content-Type: application/json
 
 ### Create project
 POST http://localhost:3000/projects
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0Njc2MjQzLCJleHAiOjE3OTQ3NjI2NDN9.HszBp6OWm6VN2j7-EkK-pax5t9CU6jeznlDngm7tN8c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0NzU1MjAzLCJleHAiOjE3OTQ4NDE2MDN9.XUAVh5bBw1JQUigVxhPtntcmPcYMI2hh0P0E2dMkNnM
 Content-Type: application/json
 
 {
-    "nom": "My First Project",
-    "description": "Testing project creation through the API"
+    "nom": "My Second Project",
+    "description": "Hello world"
 }
 
 ### Get projects
@@ -102,3 +102,44 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjg5ODgwN
 {
     "assignedTo": "6af78849aed2dc631e97cccf"
 }
+
+
+### Search projects by name or description
+GET http://localhost:3000/projects?search=testing
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0NzU0Nzg1LCJleHAiOjE3OTQ4NDExODV9.jaYqPa3d8JLdlDrtoDVNRO6gIvXHBTlpR3ehdBUH3p4
+
+### Filter projects by status
+GET http://localhost:3000/projects?status=in%20progress
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0NzU0Nzg1LCJleHAiOjE3OTQ4NDExODV9.jaYqPa3d8JLdlDrtoDVNRO6gIvXHBTlpR3ehdBUH3p4
+
+### Sort projects by name
+GET http://localhost:3000/projects?sortBy=nom&order=asc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0NzU0Nzg1LCJleHAiOjE3OTQ4NDExODV9.jaYqPa3d8JLdlDrtoDVNRO6gIvXHBTlpR3ehdBUH3p4
+
+### Combine project filters
+GET http://localhost:3000/projects?search=testing&status=in%20progress&sortBy=createdAt&order=desc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0NzU0Nzg1LCJleHAiOjE3OTQ4NDExODV9.jaYqPa3d8JLdlDrtoDVNRO6gIvXHBTlpR3ehdBUH3p4
+
+### Search tasks by title or description
+GET http://localhost:3000/tasks?search=my
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0NzU0Nzg1LCJleHAiOjE3OTQ4NDExODV9.jaYqPa3d8JLdlDrtoDVNRO6gIvXHBTlpR3ehdBUH3p4
+
+### Filter tasks by status
+GET http://localhost:3000/tasks?status=todo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0NzU0Nzg1LCJleHAiOjE3OTQ4NDExODV9.jaYqPa3d8JLdlDrtoDVNRO6gIvXHBTlpR3ehdBUH3p4
+
+### Filter tasks by deadline
+GET http://localhost:3000/tasks?deadlineFrom=2026-11-01&deadlineTo=2026-12-31
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0NzU0Nzg1LCJleHAiOjE3OTQ4NDExODV9.jaYqPa3d8JLdlDrtoDVNRO6gIvXHBTlpR3ehdBUH3p4
+
+### Sort tasks by deadline
+GET http://localhost:3000/tasks?sortBy=deadline&order=asc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0NzU0Nzg1LCJleHAiOjE3OTQ4NDExODV9.jaYqPa3d8JLdlDrtoDVNRO6gIvXHBTlpR3ehdBUH3p4
+
+### Filter tasks by assigned user
+GET http://localhost:3000/tasks?assignedTo=6af78849aed2dc631e97cccf
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjg5ODgwNTFiMDVlZGE4YWY5NmVhMCIsInJvbGUiOiJtYW5hZ2VyIiwiaWF0IjoxNzk0NzU2Mzg5LCJleHAiOjE3OTQ4NDI3ODl9.5G5kSSUNbUYUeEU-F2vyEEqgHxElp7JpB-g5RS5Jn0E
+
+### Combine task filters
+GET http://localhost:3000/tasks?status=todo&sortBy=deadline&order=asc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjg5ODgwNTFiMDVlZGE4YWY5NmVhMCIsInJvbGUiOiJtYW5hZ2VyIiwiaWF0IjoxNzk0NzU2Mzg5LCJleHAiOjE3OTQ4NDI3ODl9.5G5kSSUNbUYUeEU-F2vyEEqgHxElp7JpB-g5RS5Jn0E
