@@ -31,7 +31,7 @@ Content-Type: application/json
 
 ### Create project
 POST http://localhost:3000/projects
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0NzU1MjAzLCJleHAiOjE3OTQ4NDE2MDN9.XUAVh5bBw1JQUigVxhPtntcmPcYMI2hh0P0E2dMkNnM
+Authorization: Bearer YOUR_USER_TOKEN
 Content-Type: application/json
 
 {
@@ -41,11 +41,11 @@ Content-Type: application/json
 
 ### Get projects
 GET http://localhost:3000/projects
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRlc3QtbWFuYWdlciIsInJvbGUiOiJtYW5hZ2VyIiwiaWF0IjoxNzk0Njc2Nzk1LCJleHAiOjE3OTQ2ODAzOTV9.NwrTKjyaM0cyqssF80zGJAGfihMp3OSK1yOc4YZKL1A
+Authorization: Bearer YOUR_MANAGER_TOKEN
 
 ### Update project
-PATCH http://localhost:3000/projects/6af896e91897689d31ad8c0c
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0Njc3MjM1LCJleHAiOjE3OTQ3NjM2MzV9.02hJvdpedIHvCR4Ar_zHT1p3x6XhiyqFN-kIXXTLqHc
+PATCH http://localhost:3000/projects/YOUR_PROJECT_ID
+Authorization: Bearer YOUR_USER_TOKEN
 Content-Type: application/json
 
 {
@@ -55,32 +55,32 @@ Content-Type: application/json
 }
 
 ### Delete project
-DELETE http://localhost:3000/projects/6af896e91897689d31ad8c0c
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0Njc3MjM1LCJleHAiOjE3OTQ3NjM2MzV9.02hJvdpedIHvCR4Ar_zHT1p3x6XhiyqFN-kIXXTLqHc
+DELETE http://localhost:3000/projects/YOUR_PROJECT_ID
+Authorization: Bearer YOUR_USER_TOKEN
 
 
 ### Create a task
 POST http://localhost:3000/tasks
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0Njc2MjQzLCJleHAiOjE3OTQ3NjI2NDN9.HszBp6OWm6VN2j7-EkK-pax5t9CU6jeznlDngm7tN8c
+Authorization: Bearer YOUR_USER_TOKEN
 
 {
     "title": "Test",
     "description": "Test description",
     "status": "doing",
     "deadline": "2026-12-01",
-    "project": "6af8aa1f873f141339c04e60"
+    "project": "YOUR_PROJECT_ID"
 }
 
 ### Get all tasks
 GET http://localhost:3000/tasks
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0Njc2MjQzLCJleHAiOjE3OTQ3NjI2NDN9.HszBp6OWm6VN2j7-EkK-pax5t9CU6jeznlDngm7tN8c
+Authorization: Bearer YOUR_USER_TOKEN
 
 
 ### Update task
-PATCH http://localhost:3000/tasks/6af8aa9b873f141339c04e61
+PATCH http://localhost:3000/tasks/YOUR_TASK_ID
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0Njc2MjQzLCJleHAiOjE3OTQ3NjI2NDN9.HszBp6OWm6VN2j7-EkK-pax5t9CU6jeznlDngm7tN8c
+Authorization: Bearer YOUR_USER_TOKEN
 
 {
     "title": "Updated task title",
@@ -90,59 +90,59 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5Y
 }
 
 ### Delete task
-DELETE http://localhost:3000/tasks/6af8aa9b873f141339c04e61
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0Njc2MjQzLCJleHAiOjE3OTQ3NjI2NDN9.HszBp6OWm6VN2j7-EkK-pax5t9CU6jeznlDngm7tN8c
+DELETE http://localhost:3000/tasks/YOUR_TASK_ID
+Authorization: Bearer YOUR_USER_TOKEN
 
 
 ### Assign task to user
-PATCH http://localhost:3000/tasks/6af8d0ed9738c2e24fdb90b4/assign
+PATCH http://localhost:3000/tasks/YOUR_TASK_ID/assign
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjg5ODgwNTFiMDVlZGE4YWY5NmVhMCIsInJvbGUiOiJtYW5hZ2VyIiwiaWF0IjoxNzk0NjkyOTA3LCJleHAiOjE3OTQ3NzkzMDd9.zo3XKvpNyQnm2_1qfCtRdwOXTIlPCchaEUBCdYTPIc8
+Authorization: Bearer YOUR_MANAGER_TOKEN
 
 {
-    "assignedTo": "6af78849aed2dc631e97cccf"
+    "assignedTo": "YOUR_USER_ID"
 }
 
 
 ### Search projects by name or description
 GET http://localhost:3000/projects?search=testing
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0NzU0Nzg1LCJleHAiOjE3OTQ4NDExODV9.jaYqPa3d8JLdlDrtoDVNRO6gIvXHBTlpR3ehdBUH3p4
+Authorization: Bearer YOUR_USER_TOKEN
 
 ### Filter projects by status
 GET http://localhost:3000/projects?status=in%20progress
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0NzU0Nzg1LCJleHAiOjE3OTQ4NDExODV9.jaYqPa3d8JLdlDrtoDVNRO6gIvXHBTlpR3ehdBUH3p4
+Authorization: Bearer YOUR_USER_TOKEN
 
 ### Sort projects by name
 GET http://localhost:3000/projects?sortBy=nom&order=asc
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0NzU0Nzg1LCJleHAiOjE3OTQ4NDExODV9.jaYqPa3d8JLdlDrtoDVNRO6gIvXHBTlpR3ehdBUH3p4
+Authorization: Bearer YOUR_USER_TOKEN
 
 ### Combine project filters
 GET http://localhost:3000/projects?search=testing&status=in%20progress&sortBy=createdAt&order=desc
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0NzU0Nzg1LCJleHAiOjE3OTQ4NDExODV9.jaYqPa3d8JLdlDrtoDVNRO6gIvXHBTlpR3ehdBUH3p4
+Authorization: Bearer YOUR_USER_TOKEN
 
 ### Search tasks by title or description
 GET http://localhost:3000/tasks?search=my
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0NzU0Nzg1LCJleHAiOjE3OTQ4NDExODV9.jaYqPa3d8JLdlDrtoDVNRO6gIvXHBTlpR3ehdBUH3p4
+Authorization: Bearer YOUR_USER_TOKEN
 
 ### Filter tasks by status
 GET http://localhost:3000/tasks?status=todo
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0NzU0Nzg1LCJleHAiOjE3OTQ4NDExODV9.jaYqPa3d8JLdlDrtoDVNRO6gIvXHBTlpR3ehdBUH3p4
+Authorization: Bearer YOUR_USER_TOKEN
 
 ### Filter tasks by deadline
 GET http://localhost:3000/tasks?deadlineFrom=2026-11-01&deadlineTo=2026-12-31
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0NzU0Nzg1LCJleHAiOjE3OTQ4NDExODV9.jaYqPa3d8JLdlDrtoDVNRO6gIvXHBTlpR3ehdBUH3p4
+Authorization: Bearer YOUR_USER_TOKEN
 
 ### Sort tasks by deadline
 GET http://localhost:3000/tasks?sortBy=deadline&order=asc
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjc4ODQ5YWVkMmRjNjMxZTk3Y2NjZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzk0NzU0Nzg1LCJleHAiOjE3OTQ4NDExODV9.jaYqPa3d8JLdlDrtoDVNRO6gIvXHBTlpR3ehdBUH3p4
+Authorization: Bearer YOUR_USER_TOKEN
 
 ### Filter tasks by assigned user
-GET http://localhost:3000/tasks?assignedTo=6af78849aed2dc631e97cccf
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjg5ODgwNTFiMDVlZGE4YWY5NmVhMCIsInJvbGUiOiJtYW5hZ2VyIiwiaWF0IjoxNzk0NzU2Mzg5LCJleHAiOjE3OTQ4NDI3ODl9.5G5kSSUNbUYUeEU-F2vyEEqgHxElp7JpB-g5RS5Jn0E
+GET http://localhost:3000/tasks?assignedTo=YOUR_USER_ID
+Authorization: Bearer YOUR_MANAGER_TOKEN
 
 ### Combine task filters
 GET http://localhost:3000/tasks?status=todo&sortBy=deadline&order=asc
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjg5ODgwNTFiMDVlZGE4YWY5NmVhMCIsInJvbGUiOiJtYW5hZ2VyIiwiaWF0IjoxNzk0NzU2Mzg5LCJleHAiOjE3OTQ4NDI3ODl9.5G5kSSUNbUYUeEU-F2vyEEqgHxElp7JpB-g5RS5Jn0E
+Authorization: Bearer YOUR_MANAGER_TOKEN
 
 ### Register without a name
 POST http://localhost:3000/register
@@ -155,7 +155,7 @@ Content-Type: application/json
 
 ### Create a project without a name
 POST http://localhost:3000/projects
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjg5ODgwNTFiMDVlZGE4YWY5NmVhMCIsInJvbGUiOiJtYW5hZ2VyIiwiaWF0IjoxNzk0NzYzMzA2LCJleHAiOjE3OTQ4NDk3MDZ9.7GDZNl9dVteJAkYUZDZvcGkHOrMlywklz28FMMDQAUU
+Authorization: Bearer YOUR_MANAGER_TOKEN
 Content-Type: application/json
 
 {
@@ -164,20 +164,20 @@ Content-Type: application/json
 
 ### Create a task with an invalid status
 POST http://localhost:3000/tasks
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjg5ODgwNTFiMDVlZGE4YWY5NmVhMCIsInJvbGUiOiJtYW5hZ2VyIiwiaWF0IjoxNzk0NzYzMzA2LCJleHAiOjE3OTQ4NDk3MDZ9.7GDZNl9dVteJAkYUZDZvcGkHOrMlywklz28FMMDQAUU
+Authorization: Bearer YOUR_MANAGER_TOKEN
 Content-Type: application/json
 
 {
     "title": "Test task",
     "description": "Testing invalid status",
-    "status": "todo",
+    "status": "invalid_status",
     "deadline": "2026-12-01",
-    "project": "6af8aa1f873f141339c04e60"
+    "project": "YOUR_PROJECT_ID"
 }
 
 ### Update a project using an invalid ID
 PATCH http://localhost:3000/projects/123
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZjg5ODgwNTFiMDVlZGE4YWY5NmVhMCIsInJvbGUiOiJtYW5hZ2VyIiwiaWF0IjoxNzk0NzYzMzA2LCJleHAiOjE3OTQ4NDk3MDZ9.7GDZNl9dVteJAkYUZDZvcGkHOrMlywklz28FMMDQAUU
+Authorization: Bearer YOUR_MANAGER_TOKEN
 Content-Type: application/json
 
 {
